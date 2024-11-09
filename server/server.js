@@ -17,9 +17,13 @@ let calculations = [
 ];
 //? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
-  console.log("A request for calculations".calculations~);
+  console.log("A request for calculations".calculations);
   //?send back the list of calculations
   res.send(calculations)
+ 
+})
+app.post('/calculations',(req,res)=> {
+  console.log
 })
 //!-----------------------
 
