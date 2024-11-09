@@ -25,20 +25,29 @@ let calculations = [];
 //!-----------------------
 
 // Here's a wonderful place to make some routes:
-
 // GET /calculations
+//? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
   console.log("A request for calculations".calculations);
   //?send back the list of calculations
+
   res.send(calculations)
  })
-app.post('/', (req,res)=>{
-  console.log("get a POST request", req.body)
-let math='math';
-console.log("adding math", math)
-calculations.push(math);
-res.sendStatus(201);
-})
+
+
+//  app.post('/calculations', (req,res)=>{
+//   // The (body) sent from the client is saved for us
+//   console.log("get a POST request", req.body)
+// let math=3+7;
+// console.log("adding math", math)
+// calculations.push(math);
+// res.sendStatus(201);
+// })
+
+
+
+
+
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
 

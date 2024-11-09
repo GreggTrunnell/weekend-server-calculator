@@ -5,6 +5,30 @@ console.log("I'm the client. Listen!!");
 
 
 
+
+function equals(){
+    console.log("equals function activated");
+    let numOneInput=document.getElementById("firstNumber").value;
+    let operatorInput=
+    let numTwoInput=document.getElementById("secondNumber").value;
+    
+    axios({
+        method:"POST",
+        url: "/calculations",
+        data:{
+            calculation:{
+                numOne: "1",
+                operator: "=",
+                numTwo: "2",
+            }}
+        })
+//.then and .catch functions goes here
+
+    }
+
+
+
+//!----------------------
 // //this function will go and get all calculations and can be reused
 // //to get all calculations
 // function onReady() {
