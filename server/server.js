@@ -22,9 +22,7 @@ app.get('/calculations',(req, res)=>{
   res.send(calculations)
  
 })
-app.post('/calculations',(req,res)=> {
-  console.log
-})
+
 //!-----------------------
 
 // Here's a wonderful place to make some routes:
@@ -32,6 +30,13 @@ app.post('/calculations',(req,res)=> {
 // GET /calculations
 
 // POST /calculations
+// app.post("/addCalculation", (req,res)=>{
+//   // The data (body) sent from the client is saved for us in req.body
+//   // Note that without bodyParser setup, req.body will be undefined!
+//   console.log("get a post request")
+
+
+// })
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
