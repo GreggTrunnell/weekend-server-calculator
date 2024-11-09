@@ -8,13 +8,13 @@ app.use(express.static("server/public"));
 // Global variable that will contain all of the
 // calculation objects:
 
-// let calculations = [];
+let calculations = [];
 
 //?Some dummy data for test
-let calculations = [
-  { name: "Sabalenka", racquet: "Wilson" },
-  { name: "Rybakina", racquet: "Yonnex" },
-];
+// let calculations = [
+//   { name: "Sabalenka", racquet: "Wilson" },
+//   { name: "Rybakina", racquet: "Yonnex" },
+// ];
 //? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
   console.log("A request for calculations".calculations);
