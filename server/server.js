@@ -1,14 +1,27 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 let PORT = process.env.PORT || 5001;
 
 app.use(express.json());
-app.use(express.static('server/public'));
+app.use(express.static("server/public"));
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
 
+// let calculations = [];
+
+//?Some dummy data for test
+let calculations = [
+  { name: "Sabalenka", racquet: "Wilson" },
+  { name: "Rybakina", racquet: "Yonnex" },
+];
+//? in browser app.get uses express to call the function
+app.get('/calculations',(req, res)=>{
+  console.log("A request for calculations".calculations~);
+  //?send back the list of calculations
+  res.send(calculations)
+})
+//!-----------------------
 
 // Here's a wonderful place to make some routes:
 
@@ -16,13 +29,12 @@ let calculations = []
 
 // POST /calculations
 
-
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
 
 // Makes it so you don't have to kill the server
 // on 5000 in order to run the tests:
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === "test") {
   PORT = 5002;
 }
 
@@ -30,7 +42,7 @@ if (process.env.NODE_ENV === 'test') {
 // This is weird. We have to do it for testing reasons. There
 // is absolutely no need for you to reason about this.
 const server = app.listen(PORT, () => {
-  console.log('server running on: ', PORT);
+  console.log("server running on: ", PORT);
 });
 
 // server.setTimeout(500)
@@ -39,10 +51,10 @@ const server = app.listen(PORT, () => {
 // absolutely no need for you to reason about this.
 app.closeServer = () => {
   server.close();
-}
+};
 
 app.setCalculations = (calculationsToSet) => {
   calculations = calculationsToSet;
-}
+};
 
 module.exports = app;
