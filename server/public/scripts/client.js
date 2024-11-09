@@ -1,42 +1,37 @@
 console.log("I'm the client. Listen!!");
-//*onReady function can be used to call for anything at least
-//*once when page load
-//this function will go and get all calculations and can be reused
-//to get all calculations
-function onReady() {
-    console.log("onReady() has been called!");
-    // When the page first loads, will get calculations
-    calculations();
-    }    
-    onReady();
-//?Use axious to GET data from server.  Needs at least a method and a url
-//go to server and retrieve all calculations
-function calculations(){
-    console.log("getting calculations");
+// //*onReady function can be used to call for anything at least
+// //*once when page load
 
-    //use axios to get calculations from server
-axios({
-    method: "GET",
-    url: "/calculations"
-})
-.then((response)=>{
-    console.log("data from server", response);
-    renderToDom(response.data);//will only be called after we get a response
-})
-// .then((response) => {
-//     console.log("Full response:", response); // Log full response for status check
-//     console.log("data from server", response.data);
-    
-//     try {
-//         renderToDom(response.data); // Try rendering data
-//     } catch (renderError) {
-//         console.error("Error in renderToDom:", renderError);
-//     }
+
+
+
+// //this function will go and get all calculations and can be reused
+// //to get all calculations
+// function onReady() {
+//     console.log("onReady() has been called!");
+//     // When the page first loads, will get calculations
+//     calculations();
+//     }    
+//     onReady();
+// //?Use axious to GET data from server.  Needs at least a method and a url
+// //go to server and retrieve all calculations
+// function calculations(){
+//     console.log("getting calculations");
+
+//     //use axios to get calculations from server
+// axios({
+//     method: "GET",
+//     url: "/calculations"
 // })
-.catch((error)=>{
-    console.log("oops, GET calculations error", error);
-});
-}
+// .then((response)=>{
+//     console.log("data from server", response);
+//     renderToDom(response.data);//will only be called after we get a response
+// })
+
+// .catch((error)=>{
+//     console.log("oops, GET calculations error", error);
+// });
+//}
 
 
 

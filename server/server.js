@@ -16,28 +16,29 @@ let calculations = [];
 //   { name: "Rybakina", racquet: "Yonnex" },
 // ];
 //? in browser app.get uses express to call the function
-app.get('/calculations',(req, res)=>{
-  console.log("A request for calculations".calculations);
-  //?send back the list of calculations
-  res.send(calculations)
- 
-})
+// app.get('/calculations',(req, res)=>{
+//   console.log("A request for calculations".calculations);
+//   //?send back the list of calculations
+//   res.send(calculations)
+//  })
 
 //!-----------------------
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
-
-// POST /calculations
-// app.post("/addCalculation", (req,res)=>{
-//   // The data (body) sent from the client is saved for us in req.body
-//   // Note that without bodyParser setup, req.body will be undefined!
-//   console.log("get a post request")
-
-
-// })
-
+app.get('/calculations',(req, res)=>{
+  console.log("A request for calculations".calculations);
+  //?send back the list of calculations
+  res.send(calculations)
+ })
+app.post('/', (req,res)=>{
+  console.log("get a POST request", req.body)
+let math='math';
+console.log("adding math", math)
+calculations.push(math);
+res.sendStatus(201);
+})
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
 
