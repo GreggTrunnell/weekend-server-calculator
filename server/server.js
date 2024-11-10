@@ -21,6 +21,8 @@ app.get('/calculations',(req, res)=>{
   //?send back the list of calculations
   res.send(calculations)
  })
+//localhost:5001/calculations in postman outputs empty array as expected
+
 
 //!-----------------------
 
@@ -38,7 +40,15 @@ app.get('/calculations',(req, res)=>{
  app.post('/calculations', (req,res)=>{
   // The (body) sent from the client is saved for us
   console.log("get a POST request", req.body)
-let calculation = req.body;
+//will need new variables to do math to access data from client
+let numOneMath=req.body.inputs.numberOne
+let numTwoMath=req.body.inputs.numberTwo
+
+let calculation=numOneMath+numTwoMath;
+// let historyResult=document.getElementById("resultHistory")
+// historyResult.innerHTML+=`
+// <li>${numOneMath}+${numTwoMath}=${result}</li>`
+
 console.log("pushing new data",calculation)
 calculations.push(calculation);
 res.sendStatus(201);

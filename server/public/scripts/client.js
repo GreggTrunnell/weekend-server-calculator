@@ -7,27 +7,27 @@ function addition(event){
 
 //? without "Number" it will treat inputs as string
 let numOneInput=Number(document.getElementById("firstNumber").value);
-let numberTwoInput=Number(document.getElementById("secondNumber").value);
+let numTwoInput=Number(document.getElementById("secondNumber").value);
 
 //?need a variable to store input data
 let inputs={
         numberOne: numOneInput,
-        numberTwo: numberTwoInput,
-}
+        numberTwo: numTwoInput,
+};
 
 
 //?------moved to server 
-let historyResult=document.getElementById("resultHistory")
-historyResult.innerHTML+=`
-<li>${numOneInput}+${numberTwoInput}=${result}</li>`
+// let historyResult=document.getElementById("resultHistory")
+// historyResult.innerHTML+=`
+// <li>${numOneInput}+${numberTwoInput}=${result}</li>`
 
-console.log('my two numbers added together', result)
-}
+console.log('my two numbers added together', inputs)
+
 axios({
     method:"POST",
     url: "/calculations",
-   
-})
+    data: inputs
+   })
 //.then and .catch functions goes here
 .then((response) => {
 console.log("Post to /test worked!!", response.data)
@@ -36,8 +36,8 @@ console.log("Post to /test worked!!", response.data)
 
 }).catch((error) => {
 console.log("Oops, POST to /test broke: ", error)
-})
-
+})}
+//!I get the flash error when hitting event
 
 
 // !-----------------
