@@ -1,0 +1,39 @@
+app.post('/', (req,res) => {
+    // The data (body) sent from the client is saved for us
+    // in `req.body`
+    // Note that without bodyParser setup, req.body will be undefined!
+    console.log(`Get a POST request!`, req.body);
+
+    // Grab the new quote from the request body
+    let quote = req.body.quoteToAdd;
+
+    // Push the quote into our array
+    console.log(`Adding new quote: `, quote)
+    quoteList.push(quote);
+
+    // Send back a status code of 201
+    res.sendStatus(201);
+});
+
+function addQuote() {
+    // Make a POST request to the server
+    axios({
+      method: 'post',
+      url: '/quotes',
+      data: {
+        quoteToAdd: {
+          text: 'hello',
+          author: 'me',
+        }}
+    })
+    .then((response)=> {
+      console.log("SUCCESS!!!", response.data);
+      // refresh quotes
+      getQuotes();
+    })
+    .catch(function(error) {
+      // notify the user
+      alert('request failed');
+      console.error(error);
+    });
+  }

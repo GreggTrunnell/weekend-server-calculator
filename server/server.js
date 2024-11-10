@@ -16,11 +16,11 @@ let calculations = [];
 //   { name: "Rybakina", racquet: "Yonnex" },
 // ];
 //? in browser app.get uses express to call the function
-// app.get('/calculations',(req, res)=>{
-//   console.log("A request for calculations".calculations);
-//   //?send back the list of calculations
-//   res.send(calculations)
-//  })
+app.get('/calculations',(req, res)=>{
+  console.log("A request for calculations".calculations);
+  //?send back the list of calculations
+  res.send(calculations)
+ })
 
 //!-----------------------
 
@@ -35,14 +35,14 @@ let calculations = [];
 //  })
 
 
-//  app.post('/calculations', (req,res)=>{
-//   // The (body) sent from the client is saved for us
-//   console.log("get a POST request", req.body)
-// let math=3+7;
-// console.log("adding math", math)
-// calculations.push(math);
-// res.sendStatus(201);
-// })
+ app.post('/calculations', (req,res)=>{
+  // The (body) sent from the client is saved for us
+  console.log("get a POST request", req.body)
+let calculation = req.body;
+console.log("pushing new data",calculation)
+calculations.push(calculation);
+res.sendStatus(201);
+})
 
 
 
