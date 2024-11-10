@@ -8,13 +8,13 @@ app.use(express.static("server/public"));
 // Global variable that will contain all of the
 // calculation objects:
 
-let calculations = [];
+// let calculations = [];
 
 //?Some dummy data for test
-// let calculations = [
-//   { name: "Sabalenka", racquet: "Wilson" },
-//   { name: "Rybakina", racquet: "Yonnex" },
-// ];
+let calculations = [
+  { name: "Sabalenka", racquet: "Wilson" },
+  { name: "Rybakina", racquet: "Yonnex" },
+];
 //? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
   console.log("A request for calculations".calculations);
@@ -25,34 +25,25 @@ app.get('/calculations',(req, res)=>{
 
 
 //!-----------------------
-
-// Here's a wonderful place to make some routes:
-// GET /calculations
-// //? in browser app.get uses express to call the function
-// app.get('/calculations',(req, res)=>{
-//   console.log("A request for calculations".calculations);
-//   //?send back the list of calculations
-
-//   res.send(calculations)
-//  })
-
-
+//?-----shows created in postman--------
  app.post('/calculations', (req,res)=>{
   // The (body) sent from the client is saved for us
   console.log("get a POST request", req.body)
-//will need new variables to do math to access data from client
-let numOneMath=req.body.inputs.numberOne
-let numTwoMath=req.body.inputs.numberTwo
-
-let calculation=numOneMath+numTwoMath;
-// let historyResult=document.getElementById("resultHistory")
-// historyResult.innerHTML+=`
-// <li>${numOneMath}+${numTwoMath}=${result}</li>`
-
-console.log("pushing new data",calculation)
-calculations.push(calculation);
-res.sendStatus(201);
+  res.sendStatus(201);
 })
+//?----------------------------------
+  //will need new variables to do math to access data from client
+// let calculation=numOneMath+numTwoMath;
+// let testPush=[{
+//     numOneMath: req.body.inputs.numberOne,
+//     numTwoMath:req.body.inputs.numberTwo,
+// }]
+// console.log('getting numbers',testPush)
+
+// calculations.push(testPush);
+
+// res.sendStatus(201);
+// })
 
 
 

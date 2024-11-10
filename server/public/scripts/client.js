@@ -1,42 +1,50 @@
 console.log("I'm the client. Listen!!");
 // //*onReady function can be used to call for anything at least
 // //*once when page load
-
-function addition(event){
-    event.preventDefault();
-
-//? without "Number" it will treat inputs as string
-let numOneInput=Number(document.getElementById("firstNumber").value);
-let numTwoInput=Number(document.getElementById("secondNumber").value);
-
-//?need a variable to store input data
-let inputs={
-        numberOne: numOneInput,
-        numberTwo: numTwoInput,
-};
-
-
-//?------moved to server 
-// let historyResult=document.getElementById("resultHistory")
-// historyResult.innerHTML+=`
-// <li>${numOneInput}+${numberTwoInput}=${result}</li>`
-
-console.log('my two numbers added together', inputs)
-
 axios({
-    method:"POST",
+    method: "GET",
     url: "/calculations",
-    data: inputs
-   })
-//.then and .catch functions goes here
-.then((response) => {
-console.log("Post to /test worked!!", response.data)
-// * will retrieve latests quotes and then render them on DOM
+  
+  })
+    .then((response) => {
+      console.log("Data From Server", response.data);
+      //renderToDom(response.data); // Will only be called after we get a response.
+    })
+    .catch((error) => {
+      console.log("Oops, no candy", error);
+    });
+
+//!---------------
+// function equals(event){
+//     event.preventDefault();
+
+// //? without "Number" it will treat inputs as string
+// let numOneInput=Number(document.getElementById("firstNumber").value);
+// let numTwoInput=Number(document.getElementById("secondNumber").value);
+
+// // //?need a variable to store input data
+// let inputs={
+//         numberOne: numOneInput,
+//         numberTwo: numTwoInput,
+// };
+
+// // //?------moved to server 
+// console.log('my two numbers added together', inputs)
+
+// axios({
+//     method:"POST",
+//     url: "/calculations",
+//     data: inputs
+//    })
+// //.then and .catch functions goes here
+// .then((response) => {
+// console.log("Post to /test worked!!", response.data)
+// // * will retrieve latests quotes and then render them on DOM
 
 
-}).catch((error) => {
-console.log("Oops, POST to /test broke: ", error)
-})}
+// }).catch((error) => {
+// console.log("Oops, POST to /test broke: ", error)
+// })}
 //!I get the flash error when hitting event
 
 
