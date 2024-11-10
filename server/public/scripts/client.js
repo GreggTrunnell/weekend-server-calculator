@@ -8,14 +8,14 @@ axios({
   })
     .then((response) => {
       console.log("Data From Server", response.data);
-      //renderToDom(response.data); // Will only be called after we get a response.
+     // Will only be called after we get a response.
     })
     .catch((error) => {
       console.log("Oops, no candy", error);
     });
 
 //!---------------
-function onButton(event, operator){
+function onButton(event,operator){
     event.preventDefault();
 
 //? without "Number" it will treat inputs as string
@@ -30,6 +30,9 @@ let inputs={
 };
 
 console.log('my two numbers added together', inputs)
+// let historyResult=document.getElementById("resultHistory")
+// historyResult.innerHTML+=`
+// <li>${numOneInput} ${operator} ${numberTwoInput}=${result}</li>`
 
 axios({
     method:"POST",

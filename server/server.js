@@ -12,16 +12,16 @@ app.use(bodyParser.urlencoded({extended:true}))
 // Global variable that will contain all of the
 // calculation objects:
 
-// let calculations = [];
+let calculations = [];
 
 //?Some dummy data for test
-let calculations = [
-  { name: "Sabalenka", racquet: "Wilson" },
-  { name: "Rybakina", racquet: "Yonnex" },
-];
+// let calculations = [
+//   { name: "Sabalenka", racquet: "Wilson" },
+//   { name: "Rybakina", racquet: "Yonnex" },
+// ];
 //? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
-  console.log("A request for calculations".calculations);
+  console.log("A request for calculations",calculations);
   //?send back the list of calculations
   res.send(calculations)
  })
@@ -32,8 +32,34 @@ app.get('/calculations',(req, res)=>{
 //?-----shows created in postman--------
  app.post('/calculations', (req,res)=>{
   // The (body) sent from the client is saved for us
-  
   console.log("get a POST request", req.body)
+  //will need a variable to aquire post data in the proper format
+  let {numOneInput,numTwoInput,operator}=req.body;
+let result;
+if (operator === '+'){
+  result = numOneInput + numTwoInput;
+}
+else if (operator === '-'){
+  result = numOneInput - numTwoInput;
+}
+else if (operator === '*'){
+  result = numOneInput * numTwoInput;
+}
+else if (operator === '/'){
+  result = numOneInput / numTwoInput
+}
+//will need a variable to push data in proper format to calculations array
+let calculation = {
+  numOneInput,
+  numTwoInput,
+  operator,
+  result
+}
+// let historyResult=document.getElementById("resultHistory")
+// historyResult.innerHTML+=`
+// <li>${numOneInput} ${operator} ${numberTwoInput}=${result}</li>`
+  calculations.push(calculation)
+  console.log(calculation)
   res.sendStatus(201);
 })
 //?----------------------------------
