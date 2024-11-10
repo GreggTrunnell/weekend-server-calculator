@@ -4,25 +4,54 @@ console.log("I'm the client. Listen!!");
 
 
 
+//*Adding Function
+//addition function is called onClick
+function addition(event){
+    event.preventDefault();
+console.log("calling all pluses");
+
+//? without "Number" it will treat inputs as string
+let numOneInput=Number(document.getElementById("firstNumber").value);
+let numberTwoInput=Number(document.getElementById("secondNumber").value);
+let result=numOneInput+numberTwoInput;
+
+let historyResult=document.getElementById("resultHistory")
+historyResult.innerHTML+=`
+<li>${numOneInput}+${numberTwoInput}=${result}</li>`
+
+console.log('my two numbers added together', result)
+}
+
+function subtraction(event){
+    event.preventDefault();
+console.log("calling all pluses");
+
+//? without "Number" it will treat inputs as string
+let numOneInput=Number(document.getElementById("firstNumber").value);
+let numberTwoInput=Number(document.getElementById("secondNumber").value);
+let result=numOneInput-numberTwoInput;
+
+let historyResult=document.getElementById("resultHistory")
+historyResult.innerHTML+=`
+<li>${numOneInput}+${numberTwoInput}=${result}</li>`
+
+console.log('my two numbers added together', result)
+}
+// axios({
+//         method:"POST",
+//         url: "/calculations",
+//         data:{calculationInput}
+// })
+// //.then and .catch functions goes here
+// .then((response) => {
+//     console.log("Post to /test worked!!")
+//     // * will retrieve latests quotes and then render them on DOM
 
 
-
-
-    axios({
-        method:"POST",
-        url: "/calculations",
-        data:{calculationInput}
-})
-//.then and .catch functions goes here
-.then((response) => {
-    console.log("Post to /test worked!!")
-    // * will retrieve latests quotes and then render them on DOM
-
-
-  }).catch((error) => {
-    console.log("Oops, POST to /test broke: ", error)
-  })
-    
+//   }).catch((error) => {
+//     console.log("Oops, POST to /test broke: ", error)
+//   })
+// }
 
 
 
@@ -84,4 +113,3 @@ console.log("I'm the client. Listen!!");
     //         numOneInput: "number one input",
     //         operatorInput: "+",
     //         numTwoInput: "number two input",
-    }
