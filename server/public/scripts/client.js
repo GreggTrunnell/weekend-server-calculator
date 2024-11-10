@@ -6,25 +6,23 @@ console.log("I'm the client. Listen!!");
 
 
 
-function equals(){
-    console.log("equals function activated");
-    let numOneInput=document.getElementById("firstNumber").value;
-    let operatorInput=
-    let numTwoInput=document.getElementById("secondNumber").value;
-    
+
+
     axios({
         method:"POST",
         url: "/calculations",
-        data:{
-            calculation:{
-                numOne: "1",
-                operator: "=",
-                numTwo: "2",
-            }}
-        })
+        data:{calculationInput}
+})
 //.then and .catch functions goes here
+.then((response) => {
+    console.log("Post to /test worked!!")
+    // * will retrieve latests quotes and then render them on DOM
 
-    }
+
+  }).catch((error) => {
+    console.log("Oops, POST to /test broke: ", error)
+  })
+    
 
 
 
@@ -70,3 +68,20 @@ function equals(){
 
 //     const newCalculation= 
 // }
+
+// function equals(){
+//     console.log("equals function activated");
+//     let numOneInput=document.getElementById("firstNumber").value;
+//     let operatorInput=document.getElementById("test").value;
+//     let numTwoInput=document.getElementById("secondNumber").value;
+    
+//     let calculationInput={
+//         numOne: numOneInput,
+//         operator: operatorInput,
+//         numTwo: numTwoInput,
+// }
+    // let calculationInput={
+    //         numOneInput: "number one input",
+    //         operatorInput: "+",
+    //         numTwoInput: "number two input",
+    }
