@@ -5,6 +5,10 @@ let PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use(express.static("server/public"));
 
+//need a bodyParser to send an empty array
+const bodyParser=require('body-parser')
+app.use(bodyParser.urlencoded({extended:true}))
+
 // Global variable that will contain all of the
 // calculation objects:
 
@@ -28,6 +32,7 @@ app.get('/calculations',(req, res)=>{
 //?-----shows created in postman--------
  app.post('/calculations', (req,res)=>{
   // The (body) sent from the client is saved for us
+  
   console.log("get a POST request", req.body)
   res.sendStatus(201);
 })

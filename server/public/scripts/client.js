@@ -15,44 +15,44 @@ axios({
     });
 
 //!---------------
-// function equals(event){
-//     event.preventDefault();
+function onButton(event, operator){
+    event.preventDefault();
 
-// //? without "Number" it will treat inputs as string
-// let numOneInput=Number(document.getElementById("firstNumber").value);
-// let numTwoInput=Number(document.getElementById("secondNumber").value);
+//? without "Number" it will treat inputs as string
+let numOneInput=Number(document.getElementById("firstNumber").value);
+let numTwoInput=Number(document.getElementById("secondNumber").value);
 
-// // //?need a variable to store input data
-// let inputs={
-//         numberOne: numOneInput,
-//         numberTwo: numTwoInput,
-// };
+// //?need a variable to store input data
+let inputs={
+        numOneInput,
+        numTwoInput,
+        operator, 
+};
 
-// // //?------moved to server 
-// console.log('my two numbers added together', inputs)
+console.log('my two numbers added together', inputs)
 
-// axios({
-//     method:"POST",
-//     url: "/calculations",
-//     data: inputs
-//    })
-// //.then and .catch functions goes here
-// .then((response) => {
-// console.log("Post to /test worked!!", response.data)
-// // * will retrieve latests quotes and then render them on DOM
+axios({
+    method:"POST",
+    url: "/calculations",
+    data: inputs
+   })
+//.then and .catch functions goes here
+.then((response) => {
+console.log("Post to /test worked!!", response.data)
+// * will retrieve latests quotes and then render them on DOM
 
 
-// }).catch((error) => {
-// console.log("Oops, POST to /test broke: ", error)
-// })}
+}).catch((error) => {
+console.log("Oops, POST to /test broke: ", error)
+})}
 //!I get the flash error when hitting event
 
 
 // !-----------------
 // //?functions are called from onClick "operators"
 // //*Adding Function
-// function addition(event){
-//     event.preventDefault();
+// function equals(){
+//     preventDefault();
 
 // //? without "Number" it will treat inputs as string
 // let numOneInput=Number(document.getElementById("firstNumber").value);
@@ -65,7 +65,19 @@ axios({
 
 // console.log('my two numbers added together', result)
 // }
+// axios({
+//     method:"POST",
+//     url: "/calculations",
+//   })
+// //.then and .catch functions goes here
+// .then((response) => {
+// console.log("Post to /test worked!!", response.data)
+// // * will retrieve latests quotes and then render them on DOM
 
+
+// }).catch((error) => {
+// console.log("Oops, POST to /test broke: ", error)
+// })
 // //*Subtraction
 // function subtraction(event){
 //     event.preventDefault();
@@ -133,7 +145,36 @@ axios({
 
 
 //!----------------------
+function equals(){
+    //event.preventDefault();
 
+//? without "Number" it will treat inputs as string
+let numOneInput=Number(document.getElementById("firstNumber").value);
+let numTwoInput=Number(document.getElementById("secondNumber").value);
+
+// //?need a variable to store input data
+let inputs={
+        numberOne: numOneInput,
+        numberTwo: numTwoInput,
+};
+
+console.log('my two numbers added together', inputs)
+
+axios({
+    method:"POST",
+    url: "/calculations",
+    data: inputs
+   })
+//.then and .catch functions goes here
+.then((response) => {
+console.log("Post to /test worked!!", response.data)
+// * will retrieve latests quotes and then render them on DOM
+
+
+}).catch((error) => {
+console.log("Oops, POST to /test broke: ", error)
+})}
+//!I get the flash error when hitting event
 
 
 
