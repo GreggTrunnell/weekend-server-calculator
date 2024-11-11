@@ -13,22 +13,26 @@
     <form data-testid="calculator">
       <input id="firstNumber" data-testid="numOne" placeholder="First Number" type="number">
      <!-- the events call the functions from client.js -->
-      <button onClick="onButton(event, '+')" id="operator">+</button>
-      <button onClick="onButton(event, '-')"id="operator">-</button>
-      <button onClick="onButton(event, '*')" id="operator">*</button>
-      <button onClick="onButton(event, '/')" id="operator">/</button>
-      <input id="secondNumber" data-testid="numTwo" placeholder="Second Number" type="number">
-      <button onClick="onButton(event, '=')" id="equals">=</button>
-      <button>C</button>
+     <!-- I might have deleted the data-testids -->
+     <button id="'firstNumberInput" onClick="setOperator(event, '+')">+</button>
+      <button onClick="setOperator(event, '-')" >-</button>
+      <button onClick="setOperator(event, '*')">*</button>
+      <button onClick="setOperator(event, '/')" >/</button>
+      <input id="secondNumberInput" data-testid="numTwo" placeholder="Second Number" type="number">
+      <button onClick="handleSubmit(event, '=')" id="equals">=</button>
+      <button onClick="handleClear(event)">C</button>
     </form>
 
     <section id="recentResult" data-testid="recentResult">
       <!-- The most recent calculation result goes here. -->
     </section>
-
+    <h2 id="recentResult"></h2>
     <section id="resultHistory" data-testid="resultHistory">
       <!-- The list of calculation results goes here. -->
-    <ul>
+    <ul id="historyList">
+      <li>
+        <!-- firstNumber (op) secondNumber = result -->
+      </li>
 
     </ul>
     </section>
