@@ -1,20 +1,43 @@
 console.log("I'm the client. Listen!!");
 // //*onReady function can be used to call for anything at least
 // //*once when page load
+
+//getCalculations function should grab calculations array
+//?I tried referencing lecture notes to get the calculations array to go to dom
+//? but couldn't get to work
+function onReady(){
+    getCalculations();
+}
+console.log("On Ready was called",onReady())
+
+//function should get calculations from server
+function getCalculations(){
 axios({
-    method: "GET",
-    url: "/calculations",
-  
-  })
+    method: 'GET',
+    url: '/calculations',})
     .then((response) => {
-      console.log("Data From Server", response.data);
-     // Will only be called after we get a response.
+       console.log("response data", response.data);
+        //should append calculations to dom
+        renderToDom(response.data);
     })
     .catch((error) => {
-      console.log("Oops, no candy", error);
-    });
+        alert('request failed');
+        console.error(error);
+    })
+}
+//need a function to actually to the rendering
+function renderToDom(calculations){
+    //select the output element
+    let calculationData=document.getElementById('resultHistory');
+    //empty the output element  //?not sure how this works, following notes
+    calculationData.innerHTML= '';
+    
+    //will need a loop to go through calculations and post them
+    for (let calcsToAdd of calculations){
+        output.innerHTML +=`<li>${calcsToAdd.numOneInput}${calcsToAdd.operator}${calcsToAdd.numberTwoInput}=${calcsToAdd.result}</li>`
+        }
+}
 
-//!---------------
 function onButton(event,operator){
     event.preventDefault();
 
@@ -30,9 +53,7 @@ let inputs={
 };
 
 console.log('my two numbers added together', inputs)
-// let historyResult=document.getElementById("resultHistory")
-// historyResult.innerHTML+=`
-// <li>${numOneInput} ${operator} ${numberTwoInput}=${result}</li>`
+
 
 axios({
     method:"POST",
@@ -48,10 +69,11 @@ console.log("Post to /test worked!!", response.data)
 }).catch((error) => {
 console.log("Oops, POST to /test broke: ", error)
 })}
-//!I get the flash error when hitting event
 
 
-// !-----------------
+
+// !-----Some other proccesses are below but didn't function the way I wanted
+//! I used them for reference
 // //?functions are called from onClick "operators"
 // //*Adding Function
 // function equals(){
@@ -148,36 +170,36 @@ console.log("Oops, POST to /test broke: ", error)
 
 
 //!----------------------
-function equals(){
-    //event.preventDefault();
+// function equals(){
+//     //event.preventDefault();
 
-//? without "Number" it will treat inputs as string
-let numOneInput=Number(document.getElementById("firstNumber").value);
-let numTwoInput=Number(document.getElementById("secondNumber").value);
+// //? without "Number" it will treat inputs as string
+// let numOneInput=Number(document.getElementById("firstNumber").value);
+// let numTwoInput=Number(document.getElementById("secondNumber").value);
 
-// //?need a variable to store input data
-let inputs={
-        numberOne: numOneInput,
-        numberTwo: numTwoInput,
-};
+// // //?need a variable to store input data
+// let inputs={
+//         numberOne: numOneInput,
+//         numberTwo: numTwoInput,
+// };
 
-console.log('my two numbers added together', inputs)
+// console.log('my two numbers added together', inputs)
 
-axios({
-    method:"POST",
-    url: "/calculations",
-    data: inputs
-   })
-//.then and .catch functions goes here
-.then((response) => {
-console.log("Post to /test worked!!", response.data)
-// * will retrieve latests quotes and then render them on DOM
+// axios({
+//     method:"POST",
+//     url: "/calculations",
+//     data: inputs
+//    })
+// //.then and .catch functions goes here
+// .then((response) => {
+// console.log("Post to /test worked!!", response.data)
+// // * will retrieve latests quotes and then render them on DOM
 
 
-}).catch((error) => {
-console.log("Oops, POST to /test broke: ", error)
-})}
-//!I get the flash error when hitting event
+// }).catch((error) => {
+// console.log("Oops, POST to /test broke: ", error)
+// })}
+// //!I get the flash error when hitting event
 
 
 

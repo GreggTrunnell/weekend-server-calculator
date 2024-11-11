@@ -14,11 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 let calculations = [];
 
-//?Some dummy data for test
-// let calculations = [
-//   { name: "Sabalenka", racquet: "Wilson" },
-//   { name: "Rybakina", racquet: "Yonnex" },
-// ];
+
 //? in browser app.get uses express to call the function
 app.get('/calculations',(req, res)=>{
   console.log("A request for calculations",calculations);
@@ -30,51 +26,44 @@ app.get('/calculations',(req, res)=>{
 
 //!-----------------------
 //?-----shows created in postman--------
- app.post('/calculations', (req,res)=>{
+ app.post('/calculations', (req,res) => {
   // The (body) sent from the client is saved for us
   console.log("get a POST request", req.body)
   //will need a variable to aquire post data in the proper format
-  let {numOneInput,numTwoInput,operator}=req.body;
-let result;
-if (operator === '+'){
-  result = numOneInput + numTwoInput;
+  const {numOneInput,numTwoInput,operator} = req.body;
+let result; 
+
+switch(operator){
+  case '+':
+    result=numOneInput+numTwoInput;
+    console.log("the adding result is", result);
+    break;
+    case '-':
+      result=numOneInput-numTwoInput;
+      console.log("the subtraction is", result);
+      break;
+    case '*':
+      result=numOneInput*numTwoInput;
+      console.log("multiplication is", result);
+      break;
+      case '/':
+        result=numOneInput/numTwoInput;
+        console.log("division is", result);
 }
-else if (operator === '-'){
-  result = numOneInput - numTwoInput;
-}
-else if (operator === '*'){
-  result = numOneInput * numTwoInput;
-}
-else if (operator === '/'){
-  result = numOneInput / numTwoInput
-}
-//will need a variable to push data in proper format to calculations array
+
+ //will need a variable to push data in proper format to calculations array
 let calculation = {
   numOneInput,
   numTwoInput,
   operator,
   result
 }
-// let historyResult=document.getElementById("resultHistory")
-// historyResult.innerHTML+=`
-// <li>${numOneInput} ${operator} ${numberTwoInput}=${result}</li>`
   calculations.push(calculation)
-  console.log(calculation)
+  console.log("new calculation", calculation)
   res.sendStatus(201);
 })
-//?----------------------------------
-  //will need new variables to do math to access data from client
-// let calculation=numOneMath+numTwoMath;
-// let testPush=[{
-//     numOneMath: req.body.inputs.numberOne,
-//     numTwoMath:req.body.inputs.numberTwo,
-// }]
-// console.log('getting numbers',testPush)
 
-// calculations.push(testPush);
 
-// res.sendStatus(201);
-// })
 
 
 
