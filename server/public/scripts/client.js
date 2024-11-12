@@ -38,8 +38,8 @@ function getHistory(){
 
 function handleSubmit(event){
     event.preventDefault()
-    const firstNumInput=document.getElementById("firstNumberInput").value
-    const secondNumInput=document.getElementById("secondNumberInput").value
+    const firstNumInput=document.getElementById("firstNumInput").value
+    const secondNumInput=document.getElementById("secondNumInput").value
 }
 
     console.log("handle submit")
@@ -52,15 +52,15 @@ function handleSubmit(event){
     
     axios({
         method: 'POST',
-        url: "calculations",
+        url: "/calculations",
         data: newCalc,
     })
     .then((response)=> {
-    console.log("success with post")
+    console.log("success with post to /calculations")
     //will retrieve the latest history, which includes redering to the dom
-    getHistory(),
-    handleClear(event)
-    })
+    getHistory()
+    handleClear(event);
+   })
     .catch((error)=>{
 console.error("error on post calculations", error)
     })
@@ -77,10 +77,15 @@ function handleClear(event)
 {
     event.preventDefault()
     console.log("handle clear")
-}
+
 // Selector for the 2 inputs
 //assign them to "
 //set operator to 'undefined'
+document.getElementById("firstNumInput").value = "";
+document.getElementById("secondNumInput").value ="";
+operator= undefined
+}
+
 function render(history){
     let historyList= document.getElementById("historyList")
     let recentResult= document.getElementById("recendResult")
@@ -91,11 +96,10 @@ function render(history){
     
     recentResult.innerText=history[history.length -1].result
     for (let item of history){
-        console.log
-        
-        history.innerHTML+=`
+        console.log("current history",item)
+        historyList.innerHTML+=`
           <li>
-        ${item.firstNum}${item.operator}${item.secondNum}${item.result}
+        ${item.firstNum} ${item.operator} ${item.secondNum}=${item.result}
             </li>`
     }
 }
@@ -104,73 +108,73 @@ function render(history){
 
 
 //!---------code above is live solve code
-//getCalculations function should grab calculations array
-//?I tried referencing lecture notes to get the calculations array to go to dom
-//? but couldn't get to work
-function onReady(){
-    getCalculations();
-}
-console.log("On Ready was called",onReady())
+// //getCalculations function should grab calculations array
+// //?I tried referencing lecture notes to get the calculations array to go to dom
+// //? but couldn't get to work
+// function onReady(){
+//     getCalculations();
+// }
+// console.log("On Ready was called",onReady())
 
-//function should get calculations from server
-function getCalculations(){
-axios({
-    method: 'GET',
-    url: '/calculations',})
-    .then((response) => {
-       console.log("response data", response.data);
-        //should append calculations to dom
-        renderToDom(response.data);
-    })
-    .catch((error) => {
-        alert('request failed');
-        console.error(error);
-    })
-}
-//need a function to actually to the rendering
-function renderToDom(calculations){
-    //select the output element
-    let calculationData=document.getElementById('resultHistory');
-    //empty the output element  //?not sure how this works, following notes
-    calculationData.innerHTML= '';
+// //function should get calculations from server
+// function getCalculations(){
+// axios({
+//     method: 'GET',
+//     url: '/calculations',})
+//     .then((response) => {
+//        console.log("response data", response.data);
+//         //should append calculations to dom
+//         renderToDom(response.data);
+//     })
+//     .catch((error) => {
+//         alert('request failed');
+//         console.error(error);
+//     })
+// }
+// //need a function to actually to the rendering
+// function renderToDom(calculations){
+//     //select the output element
+//     let calculationData=document.getElementById('resultHistory');
+//     //empty the output element  //?not sure how this works, following notes
+//     calculationData.innerHTML= '';
     
-    //will need a loop to go through calculations and post them
-    for (let calcsToAdd of calculations){
-        output.innerHTML +=`<li>${calcsToAdd.numOneInput}${calcsToAdd.operator}${calcsToAdd.numberTwoInput}=${calcsToAdd.result}</li>`
-        }
-}
+//     //will need a loop to go through calculations and post them
+//     for (let calcsToAdd of calculations){
+//         output.innerHTML +=`<li>${calcsToAdd.numOneInput}${calcsToAdd.operator}${calcsToAdd.numberTwoInput}=${calcsToAdd.result}</li>`
+//         }
+// }
 
-function onButton(event,operator){
-    event.preventDefault();
+// function onButton(event,operator){
+//     event.preventDefault();
 
-//? without "Number" it will treat inputs as string
-let numOneInput=Number(document.getElementById("firstNumber").value);
-let numTwoInput=Number(document.getElementById("secondNumber").value);
+// //? without "Number" it will treat inputs as string
+// let numOneInput=Number(document.getElementById("firstNumber").value);
+// let numTwoInput=Number(document.getElementById("secondNumber").value);
 
-// //?need a variable to store input data
-let inputs={
-        numOneInput,
-        numTwoInput,
-        operator, 
-};
+// // //?need a variable to store input data
+// let inputs={
+//         numOneInput,
+//         numTwoInput,
+//         operator, 
+// };
 
-console.log('my two numbers added together', inputs)
-
-
-axios({
-    method:"POST",
-    url: "/calculations",
-    data: inputs
-   })
-//.then and .catch functions goes here
-.then((response) => {
-console.log("Post to /test worked!!", response.data)
-// * will retrieve latests quotes and then render them on DOM
+// console.log('my two numbers added together', inputs)
 
 
-}).catch((error) => {
-console.log("Oops, POST to /test broke: ", error)
-})}
+// axios({
+//     method:"POST",
+//     url: "/calculations",
+//     data: inputs
+//    })
+// //.then and .catch functions goes here
+// .then((response) => {
+// console.log("Post to /test worked!!", response.data)
+// // * will retrieve latests quotes and then render them on DOM
+
+
+// }).catch((error) => {
+// console.log("Oops, POST to /test broke: ", error)
+// })}
 
 
 
