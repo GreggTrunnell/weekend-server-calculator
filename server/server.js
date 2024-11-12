@@ -6,39 +6,30 @@ app.use(express.json());
 app.use(express.static("server/public"));
 //do not modify above
 
-let calculation=[{
-  firstNum: 10,
-  secondNum: 10,
-  operator: '+',
-  result:  20,
-}]
+let calculations=[];
 
-//GET calculations
-//respond with calculations
-// app.get('/calculations', (req, res)=>
-// res.send(calculations())
-// POST calculations
-// req.body == incoming calculation
-// call function to get result - getResult(incCalculation)
-// will return a result number
-// add result number to incCalc object as a 'result' key
-// push incCalc to calculations
-// respond with status code 201
+//will need a GET /calculations to respond with calculatons[]
+// app.get('/calculations',(req,res)=>{
+//   res.send(calculations)
+// })
+app.get('/calculations',(req, res)=>{
+  console.log("A request for calculations",calculations);
+  //?send back the list of calculations
+  res.send(calculations)
+ })
 
-// app.post('/calculations', (req,res)=>{
-// console.log("post", req.body);
-// res.sendStatus(200);
-// const newCalculation=req.body
-// const result = getResult(newCalculation)
-// newCalculation.push= result;
-// }))
+
 
 app.post('/calculations', (req, res)=>{
-  console.log("post", req.body);
-  res.sendStatus(200);
+  console.log("post req body", req.body);
+  
   const newCalculation=req.body
+  
   const result = getResult(newCalculation)
+  
   newCalculation.result= result;
+  
+  res.sendStatus(201);
 })
 
 function getResult(calc){

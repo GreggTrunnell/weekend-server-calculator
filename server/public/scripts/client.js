@@ -32,7 +32,7 @@ function getHistory(){
             render(response.data)
         })
         .catch((error)=>{
-            console.error("error on GET /calculations")
+            console.log("error on GET /calculations")
      })
 }
 
@@ -58,8 +58,7 @@ function handleSubmit(event){
     .then((response)=> {
     console.log("success with post to /calculations")
     //will retrieve the latest history, which includes redering to the dom
-    getHistory()
-    handleClear(event);
+    getHistory();
    })
     .catch((error)=>{
 console.error("error on post calculations", error)

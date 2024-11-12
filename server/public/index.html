@@ -19,14 +19,15 @@
       <button onClick="setOperator(event, '*')">*</button>
       <button onClick="setOperator(event, '/')" >/</button>
       <input id="secondNumInput" data-testid="numTwo" placeholder="Second Number" type="number">
-      <button onClick="handleSubmit(event, '=')" id="equals">=</button>
+      <button onClick="handleSubmit(event)" id="equals">=</button>
       <button onClick="handleClear(event)">C</button>
     </form>
 
-    <section id="recentResult" data-testid="recentResult">
-      <!-- The most recent calculation result goes here. -->
+    <section data-testid="recentResult">
+      <h2 id="recentResult" ></h2>
+    <!-- The most recent calculation result goes here. --> 
     </section>
-    <h2 id="recentResult"></h2>
+
     <section id="resultHistory" data-testid="resultHistory">
       <!-- The list of calculation results goes here. -->
     <ul id="historyList">
