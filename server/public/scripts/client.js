@@ -27,12 +27,12 @@ function getHistory(){
         url: "/calculations"
         })
         .then((response)=>{
-            console.log("success get worked")
-            if (response.data.length >  0)
-            render(response.data)
+            console.log("success get worked", response.data)
+            if (response.data.length >  0){
+            render(response.data)}
         })
         .catch((error)=>{
-            console.log("error on GET /calculations")
+            console.log("error on GET /calculations", error)
      })
 }
 
@@ -40,14 +40,14 @@ function handleSubmit(event){
     event.preventDefault()
     const firstNumInput=document.getElementById("firstNumInput").value
     const secondNumInput=document.getElementById("secondNumInput").value
-}
+
 
     console.log("handle submit")
     //will send "newCalc" to server
     let newCalc={
-        firstNum: Number(firstNumInput),
-        secondNum: Number(secondNumInput),
-        Operator: operator
+        numOne: Number(firstNumInput),
+        numTwo: Number(secondNumInput),
+        operator: operator,
     }
     
     axios({
@@ -59,10 +59,12 @@ function handleSubmit(event){
     console.log("success with post to /calculations")
     //will retrieve the latest history, which includes redering to the dom
     getHistory();
+  
    })
     .catch((error)=>{
 console.error("error on post calculations", error)
     })
+}
     
     
 //Axios post request, newCalc will be data
@@ -85,24 +87,49 @@ document.getElementById("secondNumInput").value ="";
 operator= undefined
 }
 
-function render(history){
-    let historyList= document.getElementById("historyList")
-    let recentResult= document.getElementById("recendResult")
-    console.log("historylist", historyList)
-    console.log("recent result:", recentResult)
-    console.log("recent result number is:", history[history.length - 1].result)
-    //replace result on dom
-    
-    recentResult.innerText=history[history.length -1].result
-    for (let item of history){
-        console.log("current history",item)
-        historyList.innerHTML+=`
-          <li>
-        ${item.firstNum} ${item.operator} ${item.secondNum}=${item.result}
-            </li>`
+// function render(history){
+//     let historyList= document.getElementById("historyList")
+//     let recentResult= document.getElementById("recendResult")
+//     console.log("historylist", historyList)
+//     console.log("recent result:", recentResult)
+//     console.log("recent result number is:", history[history.length - 1].result)
+//     //replace result on dom
+//     recentResult.innerText=history[history.length -1].result
+
+//     historyList.innerHTML = ""
+//     for (let item of history){
+//         console.log("current history",item)
+//         historyList.innerHTML+=`
+//           <li>
+//         ${item.firstNum} ${item.operator} ${item.secondNum}=${item.result}
+//             </li>`
+//     }
+// }
+function render(history) {
+    let historyList = document.getElementById("historyList")
+    let recentResult = document.getElementById("recentResult")
+
+    console.log("historyList: ", historyList)
+    console.log("recentResult: ", recentResult)
+    console.log("Recent Result Number is...:", history[history.length - 1].result)
+
+    // Replace recentResult on dom
+    recentResult.innerText = history[history.length - 1].result
+
+    // Clear the history list on the DOM
+    historyList.innerHTML = ""
+
+    // Loop over all history items and append to historyList on DOM
+    for (let item of history) {
+        console.log("Current history item: ", item)
+
+        historyList.innerHTML += `
+            <li>
+                ${item.numOne} ${item.operator} ${item.numTwo} = ${item.result}
+            </li>
+        `
     }
 }
-
 
 
 

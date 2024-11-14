@@ -28,7 +28,7 @@ app.post('/calculations', (req, res)=>{
   const result = getResult(newCalculation)
   
   newCalculation.result= result;
-  
+  calculations.push(newCalculation)
   res.sendStatus(201);
 })
 
@@ -38,13 +38,13 @@ function getResult(calc){
   //return calc.firstNum + calc.secondNum
 switch (calc.operator){
   case '+':
-    return calc.firstNum + calc.secondNum
+    return calc.numOne + calc.numTwo
   case '-':
-    return calc.firstNum - calc.secondNum
+    return calc.numOne - calc.numTwo
   case '*':
-    return calc.firstNum * calc.secondNum
+    return calc.numOne * calc.numTwo
   case '/':
-    return calc.firstNum / calc.secondNum
+    return calc.numOne / calc.numTwo
   
   default:
     return NaN
