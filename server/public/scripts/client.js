@@ -47,7 +47,7 @@ function handleSubmit(event){
     let newCalc={
         firstNum: Number(firstNumInput),
         secondNum: Number(secondNumInput),
-        Operator: operator,
+        Operator: operator
     }
     
     axios({

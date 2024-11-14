@@ -11,15 +11,15 @@
     <h1>Server-Side Calculator</h1>
 
     <form data-testid="calculator">
-      <input id="firstNumInput" data-testid="numOne" placeholder="First Number" type="number">
+      <input id="firstNumInput" data-testid="numOne" placeholder="First Number" >
      <!-- the events call the functions from client.js -->
      <!-- I might have deleted the data-testids -->
      <button  onClick="setOperator(event, '+')">+</button>
       <button onClick="setOperator(event, '-')" >-</button>
       <button onClick="setOperator(event, '*')">*</button>
       <button onClick="setOperator(event, '/')" >/</button>
-      <input id="secondNumInput" data-testid="numTwo" placeholder="Second Number" type="number">
-      <button onClick="handleSubmit(event)" id="equals">=</button>
+      <input id="secondNumInput" data-testid="numTwo" placeholder="Second Number">
+      <button onClick="handleSubmit(event)" >=</button>
       <button onClick="handleClear(event)">C</button>
     </form>
 
@@ -28,13 +28,10 @@
     <!-- The most recent calculation result goes here. --> 
     </section>
 
-    <section id="resultHistory" data-testid="resultHistory">
+    <section data-testid="resultHistory">
       <!-- The list of calculation results goes here. -->
     <ul id="historyList">
-      <li>
         <!-- firstNumber (op) secondNumber = result -->
-      </li>
-
     </ul>
     </section>
   </body>
